@@ -9,14 +9,14 @@ const register_solo = async (req, res) => {
   if (event.team_event) {
     res.status(404).json({
       status: "Fail",
-      message: "Cannot register as an individual in team event",
+      message: "Cannot register as an individual in team event.",
     });
     return;
   }
 
   if (!user || !event) {
     return res.status(404).json({
-      message: "User or event not found",
+      message: "User not found.",
     });
     return;
   }
@@ -27,7 +27,7 @@ const register_solo = async (req, res) => {
   );
   if (eventFound) {
     res.status(404).json({
-      message: "You already registered for this event",
+      message: "You already registered for this event.",
     });
     return;
   }
@@ -64,7 +64,7 @@ const register_solo = async (req, res) => {
 
 
   res.status(200).json({
-    message: "Registered Succeessfully",
+    message: "Registered Succeessfully!",
     updatedUser
   });
 };
@@ -77,7 +77,7 @@ const register_team = async (req, res) => {
   if (!team || !event) {
     return res.status(404).json({
       status: "Fail",
-      message: "Team or event not found",
+      message: "Team not found.",
     });
     return;
   }
@@ -88,7 +88,7 @@ const register_team = async (req, res) => {
   if (!isMember) {
     res.status(404).json({
       status: "Fail",
-      message: "Only team member can register team",
+      message: "Only team member can register respective team.",
     });
     return;
   }
@@ -97,7 +97,7 @@ const register_team = async (req, res) => {
   if (!event.team_event) {
     res.status(404).json({
       status: "Fail",
-      message: "A team cannot be registered in a solo_event",
+      message: "A team cannot be registered in a solo event.",
     });
     return;
   }
@@ -108,7 +108,7 @@ const register_team = async (req, res) => {
   );
   if (eventExists) {
     res.status(404).json({
-      message: "Team already registered for this event",
+      message: "Team already registered for this event.",
     });
     return;
   }
@@ -133,7 +133,7 @@ const register_team = async (req, res) => {
     res.status(404).json({
       status: "Fail",
       message:
-        "One or more user is already registered in the event with a different team",
+        "One or more user is already registered in the event with a different team.",
     });
     return;
   }
@@ -188,7 +188,7 @@ const register_team = async (req, res) => {
     { new: true });
 
   res.status(200).json({
-    message: "Team registered successfully",
+    message: "Team registered successfully!",
     updatedUser,
   });
 };

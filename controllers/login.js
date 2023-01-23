@@ -45,7 +45,7 @@ const loginUser = async (req, res) =>{
   
   verify().then((data) => {
     res.status(200).json({
-        message: 'Success',
+        message: 'Success!',
         user,
         isNew
     })
