@@ -14,7 +14,7 @@ const deleteRequest = async (req, res) => {
   const request = await Requests.findById(req.body.requestId);
   if (!request) {
     res.status(404).json({
-      message: "Request not found",
+      message: "Request not found!",
     });
     return;
   }
@@ -40,7 +40,7 @@ const deleteRequest = async (req, res) => {
     const updatedUser = await Users.findByIdAndUpdate(request.requested_to._id);
 
     res.status(200).json({
-      message:"Request Deleted Successfully!!",
+      message:"Request Deleted Successfully!",
       updatedUser
     })
 
@@ -63,13 +63,13 @@ const sendRequest = async (req, res) => {
     });
     if (request) {
       res.status(404).json({
-        message: "Request has been already sent",
+        message: "Request has been already sent.",
       });
       return;
     }
     if (team.Members.find((member) => member._id.equals(user._id))) {
       res.status(404).json({
-        message: "Given user is already added to the team",
+        message: "Given user is already added to the team.",
       });
       return;
     }
@@ -137,8 +137,8 @@ const acceptRequest = async (req, res) => {
 
     var canAcceptRequest = true;
     for(var i=0;i<recepient.Events_Participated.length;i++){
-      console.log("EventId is - ",recepient.Events_Participated[i]._id);
-      console.log("not EventId is - ",recepient.Events_Participated[i]);
+      // console.log("EventId is - ",recepient.Events_Participated[i]._id);
+      // console.log("not EventId is - ",recepient.Events_Participated[i]);
       if(team.Events_Participated.includes(recepient.Events_Participated[i]._id)){
         canAcceptRequest = false;
         break;
@@ -146,7 +146,7 @@ const acceptRequest = async (req, res) => {
     }
     if(!canAcceptRequest){
       res.status(404).json({
-        message:"Already registered in event"
+        message:"Already registered in event."
       })
       return ;
     }
@@ -180,10 +180,10 @@ const acceptRequest = async (req, res) => {
     }
 
     const user = await Users.findById(request.requested_to._id);
-    console.log("Team participated in ",team.Events_Participated);
+    // console.log("Team participated in ",team.Events_Participated);
     for(var i=0;i<team.Events_Participated.length;i++){
-      console.log("adding eventId to User ", team.Events_Participated[i]._id);
-      console.log("not adding eventId to User ", team.Events_Participated[i]);
+      // console.log("adding eventId to User ", team.Events_Participated[i]._id);
+      // console.log("not adding eventId to User ", team.Events_Participated[i]);
       user.Events_Participated.push(team.Events_Participated[i]);
     }
     user.Teams.push(request.team._id);
@@ -200,7 +200,7 @@ const acceptRequest = async (req, res) => {
     );
 
     res.status(200).json({
-      message: "Accepted Request",
+      message: "Request Accepted",
       updatedUser,
     });
   } catch (err) {
